@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"  ng-app="KenApp">
+<head>
+   <meta charset="utf-8">
+   <meta name="author" content"Ken">
+   <title>Index.html</title>
+   
+   <!-- CSS -->
+   <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+</head>
+<body ng-controller="InlineEditorController">
+   <h1>Testing</h1>
+   <div class="container">
+      Name:<br/>
+      <input type="text" ng-model="name1" ng-change="name = name1"/><br/><br/>
+      {{ name1 }}
+      <ul class="nostyle">
+      <li ng-repeat="cust in customer | filter:name1 | orderBy:'ct':!false ">
+      {{ cust.nm }} - {{ cust.ct }}
+      </li>
+      </ul>
+      <br/>
+      Name: {{name}}
+   </div>
+   
+   <!-- Angular -->
+   <script src="./Angular/angular.js"></script>
+   
+   <!-- Script -->
+   <script type="text/javascript" src="./jquery/jquery-1.11.0.js"></script>
+   <script type="text/javascript" src="./bootstrap/js/bootstrap.js"></script>  
+   
+   <script>
+      var KenApp = angular.module("KenApp",[]);
+      function InlineEditorController($scope){
+      $scope.name = "One Two";
+         alert("In controller");
+         $scope.customer = [{nm:'Dave',ct:'Ken'}, 
+                            {nm:'Ken', ct:'Something'},
+                            {nm:'Egg', ct:'phe'},
+                            {nm:'Cookies', ct:'Tea'},
+                            {nm:'1', ct:'2'},
+                            {nm:'Apple', ct:'iPhone'}
+                            ];
+      }
+      
+      KenApp.controller('InlineEditorController',InlineEditorController);
+   </script>
+</body>
+</html>
